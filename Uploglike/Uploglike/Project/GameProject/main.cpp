@@ -59,8 +59,8 @@ void Init(void)
 	//‰Šú‰»‚Ì–½—ß‚ğ‘‚­
 	//ƒQ[ƒ€‹N“®‚Éˆê“x‚¾‚¯ŒÄ‚Î‚ê‚é
 	//-----------------------------------------------------
-	ADD_RESOURCE("Player", CImage::CreateImage("Image/player.png", player_anim_data, 50, 37));
-
+	ADD_RESOURCE("Player", CImage::CreateImage("Image/player1.png", player_anim_data, 64, 64));
+	Base::Add(new Player(CVector2D(800, 500), true));
 
 
 

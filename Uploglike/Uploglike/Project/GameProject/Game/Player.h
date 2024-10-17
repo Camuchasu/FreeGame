@@ -14,7 +14,10 @@ private:
 
 	};
 	enum {
-		eAnimIdle = 0,
+		eAnimIdle0,
+		eAnimIdle1,
+		eAnimIdle2,
+		eAnimIdle3,
 		eAnimRun,
 		eAnimJumpUp,
 		eAnimJumpDown,
@@ -25,6 +28,7 @@ private:
 		eAnimDown,
 		eAnimDmg,
 	};
+	int AnimNunber = 0;
 	//èÛë‘ïœêî
 	int m_state;
 	CImage m_img;
