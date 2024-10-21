@@ -61,9 +61,9 @@ void Init(void)
 	//-----------------------------------------------------
 	ADD_RESOURCE("Player", CImage::CreateImage("Image/player1.png", player_anim_data, 64, 64));
 	Base::Add(new Player(CVector2D(800, 500), true));
-
-
-
+	ADD_RESOURCE("Map_Tip1", CImage::CreateImage("Image/yuka.png"));
+	
+	Base::Add(new Map);
 
 
 

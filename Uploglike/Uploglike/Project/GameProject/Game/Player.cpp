@@ -29,17 +29,17 @@ void Player::StateIdle()
 	const float move_speed = 8;//8
 	//ˆÚ“®ƒtƒ‰ƒO
 	bool move_flag = false;
-	//‘OˆÚ“®
+	//ãˆÚ“®
 	if (HOLD(CInput::eDown)) {
 		//ˆÚ“®—Ê‚ğİ’è
-		m_pos.x += -move_speed;
+		m_pos.y -= -move_speed;
 		AnimNunber = 0;
 		move_flag = true;
 	}
-	//Œã‚ëˆÚ“®
+	//‰ºˆÚ“®
 	if (HOLD(CInput::eUp)) {
 		//ˆÚ“®—Ê‚ğİ’è
-		m_pos.x += -move_speed;
+		m_pos.y += -move_speed;
 		AnimNunber = 1;
 		move_flag = true;
 	}
