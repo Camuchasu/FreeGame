@@ -57,15 +57,30 @@ void Player::StateIdle()
 		AnimNunber = 2;
 		move_flag = true;
 	}
+	//çUåÇ
+	if (PUSH(CInput::eButton1)) {
+		//çUåÇèÛë‘Ç÷à⁄çs
+		
+		m_state = eState_Attack01;
+	}
 	m_img.ChangeAnimation(eAnimIdle0 + AnimNunber);
 }
 
 
 void Player::StateAttack01()
 {
-
+	m_img.ChangeAnimation(eAnimAttackD+AnimNunber, false);
+	if (m_img.CheckAnimationEnd()) {
+		m_state = eState_Idle;
 	}
-
+	}
+void Player::StateAttack02()
+{
+	m_img.ChangeAnimation(eAnimAttack02, false);
+	if (m_img.CheckAnimationEnd()) {
+		m_state = eState_Idle;
+	}
+}
 
 
 
@@ -204,20 +219,24 @@ static TexAnim playerStep[] = {
 	{ 13,7 },
 
 };
-static TexAnim playerAttack01[] = {
-	{ 43,2 },
-	{ 44,2 },
-	{ 45,2 },
-	{ 46,2 },
-	{ 47,2 },
-	{ 48,2 },
-	{ 49,2 },
+static TexAnim playerAttackD[] = {
+	{ 7,15 },
+};
+static TexAnim playerAttackU[] = {
+	
+	{ 28,10 },
+};
+static TexAnim playerAttackL[] = {
+	//{ 30,15 },
+	{ 47,15 },
+};
+static TexAnim playerAttackR[] = {
+	{ 20,15 },
+	//{ 24,15 },
 };
 static TexAnim playerAttack02[] = {
-	{ 50,5 },
-	{ 51,5 },
-	{ 52,5 },
-
+	{ 23,5 },
+	{ 24,5 },
 
 };
 static TexAnim playerCrouchi[] = {
@@ -260,7 +279,10 @@ TexAnimData player_anim_data[] = {
 	ANIMDATA(playerStep),//2
 	ANIMDATA(playerJumpup),//7
 	ANIMDATA(playerJumpDown),//8
-	ANIMDATA(playerAttack01),//3
+	ANIMDATA(playerAttackD),//3
+	ANIMDATA(playerAttackL),
+	ANIMDATA(playerAttackR),
+	ANIMDATA(playerAttackU),
 	ANIMDATA(playerCrouchi),//5
 	ANIMDATA(playerBattou),//1
 	ANIMDATA(playerAttack02),//4

@@ -5,13 +5,14 @@
 //縦
 #define MAP_HEIGHT 150  //250
 //大きさ
-#define MAP_TIP_SIZE  150 //128
+#define MAP_TIP_SIZE  100 //128
 
 class Map : public Base {
 private:
 	CImage m_img;
+	int m_stageNunber;
 public:
-	Map();
+	Map(int stageNunber);
 	void Draw();
 	//指定座標のチップ番号取得
 	int GetTip(const CVector2D& pos, int* tx = nullptr, int* ty = nullptr);
