@@ -6,6 +6,7 @@ enum {
     eType_Map,
     eType_Door,
     eType_AreaChange,
+    eType_Item,
     eType_Player,
     eType_Enemy,
     eType_Bullet,
@@ -14,8 +15,9 @@ enum {
     eType_Enemy_Attack,
     eType_Effect,
     eType_UI,
+    eType_Menyu,
     eType_Scene,
-   
+    eType_ItemManeger,
 };
 //èdóÕâ¡ë¨ìx
 #define GRAVITY (9.8f/20)

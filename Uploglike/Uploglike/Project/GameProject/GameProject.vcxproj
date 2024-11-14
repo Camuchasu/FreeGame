@@ -16,6 +16,10 @@
     <ClCompile Include="Game\CParam.cpp" />
     <ClCompile Include="Game\CTimer.cpp" />
     <ClCompile Include="Game\Enemy.cpp" />
+    <ClCompile Include="Game\Enemy1.cpp" />
+    <ClCompile Include="Game\Enemy2.cpp" />
+    <ClCompile Include="Game\Enemy3.cpp" />
+    <ClCompile Include="Game\Enemy4.cpp" />
     <ClCompile Include="Game\EnemyManeger.cpp" />
     <ClCompile Include="Game\Field.cpp" />
     <ClCompile Include="Game\Game.cpp" />
@@ -23,9 +27,11 @@
     <ClCompile Include="Game\Item.cpp" />
     <ClCompile Include="Game\ItemBag.cpp" />
     <ClCompile Include="Game\Map.cpp" />
+    <ClCompile Include="Game\Menyu.cpp" />
     <ClCompile Include="Game\Object.cpp" />
     <ClCompile Include="Game\Pawn.cpp" />
     <ClCompile Include="Game\Player.cpp" />
+    <ClCompile Include="Game\Slash.cpp" />
     <ClCompile Include="Game\UI.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -35,6 +41,10 @@
     <ClInclude Include="Game\CParam.h" />
     <ClInclude Include="Game\CTimer.h" />
     <ClInclude Include="Game\Enemy.h" />
+    <ClInclude Include="Game\Enemy1.h" />
+    <ClInclude Include="Game\Enemy2.h" />
+    <ClInclude Include="Game\Enemy3.h" />
+    <ClInclude Include="Game\Enemy4.h" />
     <ClInclude Include="Game\EnemyManeger.h" />
     <ClInclude Include="Game\Field.h" />
     <ClInclude Include="Game\Game.h" />
@@ -42,9 +52,11 @@
     <ClInclude Include="Game\Item.h" />
     <ClInclude Include="Game\ItemBag.h" />
     <ClInclude Include="Game\Map.h" />
+    <ClInclude Include="Game\Menyu.h" />
     <ClInclude Include="Game\Object.h" />
     <ClInclude Include="Game\Pawn.h" />
     <ClInclude Include="Game\Player.h" />
+    <ClInclude Include="Game\Slash.h" />
     <ClInclude Include="Game\UI.h" />
     <ClInclude Include="Global.h" />
   </ItemGroup>

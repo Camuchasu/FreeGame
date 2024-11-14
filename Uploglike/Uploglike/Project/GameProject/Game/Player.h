@@ -1,6 +1,6 @@
 #pragma once
 #include "../Base/Base.h"
-
+class Menyu;
 class Player : public Base {
 private:
 	//ó‘Ô
@@ -56,6 +56,6 @@ public:
 	void Update();
 	void Draw();
 	void Collision(Base* b);
-
+	Menyu* m_menyu;
 };
 extern TexAnimData player_anim_data[];

@@ -4,6 +4,16 @@
 #include"Game/Map.h"
 #include"Game/Player.h"
 #include"Game/Game.h"
+#include"Game/Enemy.h"
+#include"Game/Enemy1.h"
+#include"Game/Enemy2.h"
+#include"Game/Enemy3.h"
+#include"Game/Enemy4.h"
+#include"Game/Item.h"
+#include"Game/UI.h"
+#include"Game/Menyu.h"
+
+
 //--------------------------------------------
 //グローバル変数領域
 //--------------------------------------------
@@ -60,13 +70,21 @@ void Init(void)
 	//ゲーム起動時に一度だけ呼ばれる
 	//-----------------------------------------------------
 	ADD_RESOURCE("Player", CImage::CreateImage("Image/player1.png", player_anim_data, 64, 64));
-	Base::Add(new Player(CVector2D(800, 500), true));
+	ADD_RESOURCE("Enemy1", CImage::CreateImage("Image/Bat.png", Enemy1_anim_data, 150, 150));
+	//Base::Add(new Enemy(CVector2D(3000, 300), true));
 	ADD_RESOURCE("Map_Tip1", CImage::CreateImage("Image/gatiyuka.png"));
+	ADD_RESOURCE("Item", CImage::CreateImage("Image/a-ma-.png"));
+	ADD_RESOURCE("UI", CImage::CreateImage("Image/hyouzi2.png",UI_anim_data, 120, 30));
+	ADD_RESOURCE("menyu-", CImage::CreateImage("Image/menyu-.png", Menyu_anim_data, 32, 32));
+	
+	Base::Add(new UI(CVector2D(960, 800)));
+	Base::Add(new Enemy1(CVector2D(600, 500), true));
+	Base::Add(new Player(CVector2D(800, 500), true));
 	//ステージのランダム
 	srand(time(NULL));
-	Base::Add(new Map(rand()%2+1));
-
-
+	//Base::Add(new Map(rand() % 5 +1));
+	Base::Add(new Map(4));
+	Base::Add(new ItemManeger());
 
 
 }

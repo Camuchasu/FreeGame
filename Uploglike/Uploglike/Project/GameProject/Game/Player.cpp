@@ -1,5 +1,7 @@
 #include "Player.h"
 #include "Map.h"
+#include "Item.h"
+#include "Menyu.h"
 Player::Player(const CVector2D& p, bool flip) :
 Base(eType_Player){ 
 	//画像複製
@@ -9,15 +11,19 @@ Base(eType_Player){
 	//座標設定
 	m_pos_old = m_pos = p;
 	//中心位置設定
-	m_img.SetCenter(50, 100);
+	m_img.SetCenter(100, 100);
 	m_img.SetSize(200, 200);
-	m_rect = CRect(-30, -80, 30, 0);
+	m_rect = CRect(-30, -25, 30, 47);
 	//反転フラグ
 	//m_flip = flip;
 	//通常状態へ
 	m_state = eState_Idle;
 	//着地フラグ
 	m_is_ground = true;
+	m_menyu = nullptr;
+	//メニュー生成
+	Base::Add(m_menyu = new Menyu(CVector2D(225, 250)));
+	Base::Add(m_menyu = new Menyu(CVector2D(225, 250)));
 	}
 
 
@@ -113,7 +119,12 @@ void Player::StateCrouchi()
 
 
 void Player::Update() {
+
 	m_pos_old = m_pos;
+	//メニューを生成したときにプレイヤーの動きを止める
+	if (m_menyu->hyouzi == true) {
+		return;
+	}
 	switch (m_state) {
 		//通常状態
 	case eState_Idle:
@@ -147,8 +158,10 @@ void Player::Update() {
 
 	//アニメーション更新
 	m_img.UpdateAnimation();
+	//スクロール
 	m_scroll.x = m_pos.x - 1280 / 2;
-
+	m_scroll.y = m_pos.y - 720 / 2;
+	
 }
 
 void Player::Draw() {
@@ -159,12 +172,32 @@ void Player::Draw() {
 	//描画
 	m_img.Draw();
 	//当たり判定矩形表示
-	//DrawRect();
+	DrawRect();
 }
 void Player::Collision(Base* b)
 {
+	switch (b->m_type) {
+	case eType_Map:
+		if (Map* m = dynamic_cast<Map*>(b)) {//
+			int t;
+			t = m->CollisionRect(CVector2D(m_pos.x, m_pos_old.y), m_rect);
+			if (t >= 5) {
+				m_pos.x = m_pos_old.x;
+			}
+			t = m->CollisionRect(CVector2D(m_pos_old.x, m_pos.y), m_rect);
+			if (t >= 5) {
+				m_pos.y = m_pos_old.y;
 
-
+			}
+		}
+	case eType_Item:
+		if (Item* m = dynamic_cast<Item*>(b)) {
+			if (Base::CollisionRect(this, b)) {
+				m->motteru = true;
+			}
+		}
+	}
+	
 }
 
 static TexAnim playerIdle[] = {
@@ -289,3 +322,4 @@ TexAnimData player_anim_data[] = {
 	ANIMDATA(playerDown),//6
 	ANIMDATA(playerDmg),//6
 };
+//hyouzi

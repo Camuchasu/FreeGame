@@ -50,6 +50,24 @@
     <ClCompile Include="Game\Pawn.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Enemy1.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy2.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy3.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy4.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Slash.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Menyu.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Base">
@@ -107,6 +125,24 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Pawn.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy1.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy2.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy3.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy4.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Slash.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Menyu.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
