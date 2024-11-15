@@ -6,13 +6,14 @@ Player::Player(const CVector2D& p, bool flip) :
 Base(eType_Player){ 
 	//画像複製
 	m_img = COPY_RESOURCE("Player", CImage);
+	m_img.mp_texture->SetFilter(GL_NEAREST);
 	//再生アニメーション設定
 	m_img.ChangeAnimation(0);
 	//座標設定
 	m_pos_old = m_pos = p;
 	//中心位置設定
-	m_img.SetCenter(100, 100);
-	m_img.SetSize(200, 200);
+	m_img.SetCenter(50, 50);
+	m_img.SetSize(100, 100);
 	m_rect = CRect(-30, -25, 30, 47);
 	//反転フラグ
 	//m_flip = flip;
@@ -159,9 +160,25 @@ void Player::Update() {
 	//アニメーション更新
 	m_img.UpdateAnimation();
 	//スクロール
+	
 	m_scroll.x = m_pos.x - 1280 / 2;
 	m_scroll.y = m_pos.y - 720 / 2;
-	
+	//左方向をマップに合わせる
+	if (m_scroll.x < 0) {
+		m_scroll.x = 0;
+	}
+	//右方向をマップに合わせる
+	if (m_scroll.x > 500) {
+		m_scroll.x = 500;
+	}
+	//上方向をマップに合わせる
+	if (m_scroll.y < 0) {
+		m_scroll.y = 0;
+	}
+	//下方向をマップに合わせる
+	if (m_scroll.y > 350) {
+		m_scroll.y = 350;
+	}
 }
 
 void Player::Draw() {
@@ -200,40 +217,33 @@ void Player::Collision(Base* b)
 	
 }
 
-static TexAnim playerIdle[] = {
+static TexAnim playerIdle[] = {//前
 
-	{ 33,10 },
-	{ 34,10 },
-	{ 35,10 },
-	{ 36,10 },
-	{ 37,10 },
+	{ 0,10 },
+	{ 4,10 },
+	{ 8,10 },
+	{ 12,10 },
 };
-static TexAnim playerIdle1[] = {
+static TexAnim playerIdle1[] = {//下
 
-	{ 41,10 },
-	{ 42,10 },
-	{ 43,10 },
-	{ 44,10 },
-	{ 45,10 },
-	
+	{ 1,10 },
+	{ 5,10 },
+	{ 9,10 },
+	{ 13,10 },
 };
-static TexAnim playerIdle2[] = {
+static TexAnim playerIdle2[] = {//右
 
-	{ 49,10 },
-	{ 50,10 },
-	{ 51,10 },
-	{ 52,10 },
-	{ 53,10 },
-	
+	{ 3,10 },
+	{ 7,10 },
+	{ 11,10 },
+	{ 15,10 },
 };
-static TexAnim playerIdle3[] = {
+static TexAnim playerIdle3[] = {//左
 
-	{ 57,10 },
-	{ 58,10 },
-	{ 59,10 },
-	{ 60,10 },
-	{ 61,10 },
-	
+	{ 2,10 },
+	{ 6,10 },
+	{ 10,10 },
+	{ 14,10 },
 };
 static TexAnim playerBattou[] = {
 
@@ -253,18 +263,18 @@ static TexAnim playerStep[] = {
 
 };
 static TexAnim playerAttackD[] = {
-	{ 7,15 },
+	{ 20,15 },
 };
 static TexAnim playerAttackU[] = {
 	
-	{ 28,10 },
+	{ 18,10 },
 };
 static TexAnim playerAttackL[] = {
 	//{ 30,15 },
-	{ 47,15 },
+	{ 17,15 },
 };
 static TexAnim playerAttackR[] = {
-	{ 20,15 },
+	{ 19,15 },
 	//{ 24,15 },
 };
 static TexAnim playerAttack02[] = {

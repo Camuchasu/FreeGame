@@ -35,10 +35,17 @@ void Menyu::Update()
 	//上方向
 	if (PUSH(CInput::eUp)) {
 		stagenumber -= 1;
+		if (stagenumber < 0) {
+			stagenumber = 3;
+		}
+
 	}
 	// 下方向
 	if (PUSH(CInput::eDown)) {
 		stagenumber += 1;
+		if (stagenumber >3) {
+			stagenumber = 0;
+		}
 	}
 	//アニメーション更新
 	m_img.UpdateAnimation();

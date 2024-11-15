@@ -69,16 +69,19 @@ void Init(void)
 	//初期化の命令を書く
 	//ゲーム起動時に一度だけ呼ばれる
 	//-----------------------------------------------------
-	ADD_RESOURCE("Player", CImage::CreateImage("Image/player1.png", player_anim_data, 64, 64));
+	ADD_RESOURCE("Player", CImage::CreateImage("Image/player2.png", player_anim_data, 16, 16));
 	ADD_RESOURCE("Enemy1", CImage::CreateImage("Image/Bat.png", Enemy1_anim_data, 150, 150));
-	//Base::Add(new Enemy(CVector2D(3000, 300), true));
+	ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/gobuta.png", Enemy2_anim_data, 150, 150));
+	ADD_RESOURCE("Enemy3", CImage::CreateImage("Image/Slime3.png", Enemy3_anim_data, 16, 16));
 	ADD_RESOURCE("Map_Tip1", CImage::CreateImage("Image/gatiyuka.png"));
 	ADD_RESOURCE("Item", CImage::CreateImage("Image/a-ma-.png"));
 	ADD_RESOURCE("UI", CImage::CreateImage("Image/hyouzi2.png",UI_anim_data, 120, 30));
 	ADD_RESOURCE("menyu-", CImage::CreateImage("Image/menyu-.png", Menyu_anim_data, 32, 32));
 	
-	Base::Add(new UI(CVector2D(960, 800)));
+	Base::Add(new UI(CVector2D(1100, 900)));
 	Base::Add(new Enemy1(CVector2D(600, 500), true));
+	Base::Add(new Enemy2(CVector2D(600, 500), true));
+	Base::Add(new Enemy3(CVector2D(600, 500), true));
 	Base::Add(new Player(CVector2D(800, 500), true));
 	//ステージのランダム
 	srand(time(NULL));

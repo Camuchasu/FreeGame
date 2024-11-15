@@ -1,7 +1,7 @@
 #include "UI.h"
 #include"../Base/Base.h"
 UI::UI(const CVector2D& p) :
-	Base(eType_UI)
+	Base(eType_UI), m_UI_text("C:\\Windows\\Fonts\\msgothic.ttc", 30)
 {
 	//画像複製
 	m_img = COPY_RESOURCE("UI", CImage);
@@ -11,9 +11,13 @@ UI::UI(const CVector2D& p) :
 	//座標設定
 	m_pos = p;
 	//画像サイズ設定
-	m_img.SetSize(1000,400 );
+	m_img.SetSize(700,400 );
 	//中心位置設定
 	m_img.SetCenter(500, 200);
+	message.push_back("主人公は歩いている");
+	message.push_back("敵からダメージを受けた！");
+	message.push_back("主人公は回復をしている");
+	message.erase(message.begin());
 	//turn = 0;
 }
 
@@ -31,6 +35,11 @@ void UI::Draw()
 	m_img.Draw();
 	//当たり判定矩形表示
 	DrawRect();
+	int i = 0;
+	for (auto& m : message) {
+		m_UI_text.Draw(700, 800+i*60, 0, 0, 0, m.c_str());
+		i++;
+	}
 }
 
 
