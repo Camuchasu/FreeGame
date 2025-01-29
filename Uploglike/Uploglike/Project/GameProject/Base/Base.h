@@ -3,10 +3,13 @@
 /// オブジェクトの種類
 /// </summary>
 enum {
+   
     eType_Map,
     eType_Door,
     eType_AreaChange,
     eType_Item,
+    eType_TP,
+    eType_Message,
     eType_Player,
     eType_Enemy,
     eType_Enemy1,
@@ -16,9 +19,9 @@ enum {
     eType_Enemy5,
     eType_Enemy6,
     eType_Enemy7,
-    eType_Enemy8,
-    eType_Enemy9,
-    eType_Enemy10,
+    eType_soubi,
+    eType_GameOver,
+    eType_MAXHP,
     eType_Bullet,
     eType_Goal,
     eType_Player_Attack,
@@ -26,8 +29,10 @@ enum {
     eType_Effect,
     eType_UI,
     eType_Menyu,
+    eType_ItemMenyu,
     eType_Scene,
     eType_ItemManeger,
+    eType_HP
 };
 //重力加速度
 #define GRAVITY (9.8f/20)
@@ -54,7 +59,9 @@ public:
     static std::list<Base*> m_list;
     //スクロール値
     static CVector2D m_scroll;
-
+    int lv;
+    int HP;
+    int exp;
 public:
     /// <summary>
     /// コンストラクタ
@@ -85,7 +92,7 @@ public:
     /// <param name="b2">対象2</param>
     /// <returns></returns>
     static bool CollisionCircle(Base* b1, Base* b2);
-
+    static bool CollisionCharctor(Base* b1, Base* b2);
 
     /// <summary>
     /// 全てのオブジェクトの更新

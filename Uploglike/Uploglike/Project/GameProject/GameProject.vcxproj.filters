@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Base\Base.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Player.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -17,9 +14,6 @@
     <ClCompile Include="Game\Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Field.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Animdata.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -30,24 +24,6 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\UI.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\EnemyManeger.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Object.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\CTimer.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\CParam.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\GameManeger.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Pawn.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\Enemy1.cpp">
@@ -68,6 +44,36 @@
     <ClCompile Include="Game\Menyu.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Effect.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\TP.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameData.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy5.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Base.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\BossEnemy.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Goal.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="TItle\Title.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Bullet.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameOver.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Base">
@@ -75,6 +81,9 @@
     </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{57387513-4066-412f-a46e-bf89b7ae3d2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Title">
+      <UniqueIdentifier>{76de3c5e-6d28-467e-bb17-e7926bf98a08}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,9 +103,6 @@
     <ClInclude Include="Game\Game.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Field.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Animdata.h">
       <Filter>Game</Filter>
     </ClInclude>
@@ -107,24 +113,6 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\UI.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\EnemyManeger.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Object.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\CTimer.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\CParam.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\GameManeger.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Pawn.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Enemy1.h">
@@ -143,6 +131,33 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Menyu.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Effect.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\TP.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameData.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy5.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\BossEnemy.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Goal.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TItle\Title.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Bullet.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameOver.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

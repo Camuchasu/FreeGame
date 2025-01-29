@@ -2,11 +2,15 @@
 #include "Map.h"
 #include "../Base/Base.h"
 #include "Slash.h"
-
+#include "Animdata.h"
+#include "Menyu.h"
+#include"Effect.h"
+#include "ItemBag.h"
+#include "Player.h"
 static TexAnim Enemy2Step[] = {//0
 
 	{ 16,8 },
-	{ 17,8 },
+	{ 17,8},
 	{ 18,8 },
 	{ 19,8 },
 
@@ -26,8 +30,8 @@ static TexAnim Enemy2Attack[] = {//1
 static TexAnim Enemy2die[] = {//2
 	{ 8,5 },
 	{ 9,30 },
-	{ 10,60 },
-	{ 11,60 },
+	{ 10,30 },
+	{ 11,30 },
 };
 static TexAnim Enemy2ran[] = {//3
 	{ 24,4 },
@@ -61,7 +65,6 @@ void Enemy2::StateIdle()//ジャンプなし
 	const float move_speed = 3;
 	//移動フラグ
 	bool move_flag = false;
-
 	Base* player = Base::FindObject(eType_Player);
 	if (player) {
 		CVector2D v = player->m_pos - m_pos;
@@ -83,7 +86,19 @@ void Enemy2::StateIdle()//ジャンプなし
 				m_flip = false;
 				move_flag = true;
 			}
-
+			//上移動
+			if (v.y < -16) {//16ドット離れていると移動します
+				//移動量を設定
+				m_pos.y += -move_speed;
+				move_flag = true;
+			}
+			//下移動
+			if (v.y > +16) {
+				//移動力を設定
+				m_pos.y += move_speed;
+				move_flag = true;
+			}
+		}
 
 			//左攻撃
 			if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 64) {
@@ -110,7 +125,8 @@ void Enemy2::StateIdle()//ジャンプなし
 			m_img.ChangeAnimation(e2step);
 		}
 	}
-}
+  
+
 
 void Enemy2::StateAttack()
 {
@@ -134,7 +150,7 @@ void Enemy2::StateAttack()
 
 void Enemy2::StateDamage()
 {
-	m_img.ChangeAnimation(e2Anim_Attack, false);
+	m_img.ChangeAnimation(e2AnimHit, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
 	}
@@ -145,6 +161,8 @@ void Enemy2::StateDown()
 	m_img.ChangeAnimation(e2Animdie, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_kill = true;
+		Base* player = Base::FindObject(eType_Player);
+		player->exp += 100;
 	}
 }
 
@@ -161,17 +179,20 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 	//中心位置
 	m_img.SetCenter(150, 200);
 	//矩形
-	m_rect = CRect(-30, -98, 30, 0);
+	m_rect = CRect(-30, -60, 30, 10);
 	//hp
-	m_hp = 10;
+	m_hp = 3;
 	//反転フラグ
 	m_flip = flip;
+	//当たり判定
+	m_rad = (40);
 	//着地フラグ
 	m_is_ground = true;
 	//攻撃番号
 	m_attack_no = rand();
 	//ダメージ番号
 	m_damage_no = -1;
+	
 }
 
 void Enemy2::Update()
@@ -180,6 +201,13 @@ void Enemy2::Update()
 	//m_img.UpdateAnimation();
 	//return;
 	m_pos_old = m_pos;
+	//メニューを探索し、型変換してエネミーにもメニューを開いたとき動きを止める処理をする
+	if (Menyu* menyu = dynamic_cast<Menyu*>(Base::FindObject(eType_Menyu))) {
+		//メニューを生成したときにプレイヤーの動きを止める
+		if (menyu->hyouzi != 0) {//メニューの表示が０以外動きを止める
+			return;
+		}
+	}
 	switch (m_state) {
 		//通常
 	case eState_Idle:
@@ -199,8 +227,6 @@ void Enemy2::Update()
 		break;
 	}
 	
-	
-
 	//アニメーション更新
 	m_img.UpdateAnimation();
 }
@@ -231,7 +257,10 @@ void Enemy2::Collision(Base* b)
 			t = m->CollisionRect(CVector2D(m_pos_old.x, m_pos.y), m_rect);
 			if (t != 0) {
 				m_pos.y = m_pos_old.y;
-				
+				//落下リセット
+				m_vec.y = 0;
+				//着地フラグON
+				m_is_ground = true;
 			}
 		}
 		break;
@@ -240,9 +269,16 @@ void Enemy2::Collision(Base* b)
 		//Slash型へキャスト、型変換できたら
 		if (Slash* s = dynamic_cast<Slash*>(b)) {
 			if (Base::CollisionRect(this, s)) {
-
-
-				m_hp -= 5;
+				int Damage = s->lv;
+				Base* player = Base::FindObject(eType_Player);
+				if (Player* p = dynamic_cast<Player*>(b)) {
+					if (p->soubi[0] >= 0) {
+						int item = ItemBag::m_item_list[p->soubi[0]];
+						ItemDate* d = &Item_Date[item];
+						Damage += d->Attack;
+					}
+				}
+				m_hp -= Damage;
 				if (m_hp <= 0) {
 					m_state = eState_Down;
 				}
@@ -254,8 +290,19 @@ void Enemy2::Collision(Base* b)
 		}
 
 		break;
+	case eType_Player:
+	case eType_Enemy:
+	case eType_Enemy1:
+	case eType_Enemy2:
+	case eType_Enemy3:
+	case eType_Enemy4:
+	case eType_Enemy5:
+		Base::CollisionCharctor(this, b);
+		break;
+
+	}
+}
+
+
 
 	
-	}
-
-}

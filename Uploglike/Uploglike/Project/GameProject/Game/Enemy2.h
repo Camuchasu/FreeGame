@@ -1,6 +1,7 @@
 #pragma once
 #include "../Base/Base.h"
-
+#include "Map.h"
+class Menyu;
 class Enemy2 : public Base {
 private:
 	enum {
@@ -23,6 +24,8 @@ private:
 	bool m_flip;
 	//体力
 	int m_hp;
+	//移動ルートデータ
+	RootData m_root_data;
 	//各状態での挙動
 	void StateIdle();
 	void StateAttack();
@@ -41,5 +44,7 @@ public:
 	void Update();
 	void Draw();
 	void Collision(Base* b);
+	Menyu* m_menyu;
+	
 };
 extern TexAnimData Enemy2_anim_data[];

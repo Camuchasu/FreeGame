@@ -1,7 +1,7 @@
 #include "Base.h"
 std::list<Base*> Base::m_list;
 CVector2D Base::m_scroll(0, 0);
-Base::Base(int type) : m_type(type),m_pos(0, 0),m_rad(0), m_kill(false)
+Base::Base(int type) : m_type(type), m_pos(0, 0), m_rad(0), m_kill(false), lv(1), exp(0)
 {
 
 }
@@ -30,19 +30,67 @@ bool Base::CollisionCircle(Base* b1, Base* b2)
     }
     return false;
 }
+bool Base::CollisionCharctor(Base* b1, Base* b2) {
+
+    // posP	・・・ プレイヤー座標
+    // radP ・・・ プレイヤーの円の半径
+    // posE ・・・ 敵の座標
+    // radE ・・・ 敵の円の半径
+
+    // V.Length()		・・・ ベクトルの距離を求める
+    // V.GetNormalize()	・・・ 正規化したベクトルを取得
+
+    // ■衝突しているかどうか
+
+    // プレイヤーから敵までのベクトルを求める
+    CVector2D v = b1->m_pos - b2->m_pos;
+    // プレイヤーから敵までの距離を取得
+    float len = v.Length();
+
+    // プレイヤーから敵までの距離が、
+    // プレイヤーと敵の円の半径の合計値より大きい（衝突していない）場合は、
+    // ここで処理をやめる
+    if (len > b1->m_rad + b2->m_rad) return false;
+
+    // ■衝突していたら、押し戻す
+    // ① 押し戻す方向を求める
+    CVector2D v1 = v.GetNormalize();	// プレイヤーを押し戻す方向
+    CVector2D v2 = -v1;					// 敵を押し戻す方向
+
+    // ② 押し戻す距離を求める
+    float s = b1->m_rad + b2->m_rad - len;	// 両円の半径の合計値 - 距離
+    s *= 1.01;
+    // ③ 押し戻す
+    float r = 0.5f;
+    b1->m_pos += v1 * s * r;
+    b2->m_pos += v2 * s * (1.0f - r);
+    return true;
+}
 void Base::CollisionAll()
 {
-    auto it1 = m_list.begin();
-    auto last = m_list.end();
-    while (it1 != last) {
+    if (m_list.size() < 2) {
+        return;
+            }
+    auto it1 = m_list.end();
+    auto last = m_list.begin();
+    while (true) {
+        it1--;
+        if (it1 == last) {
+            break;
+        }
         auto it2 = it1;
-        it2++;
-        while (it2 != last) {
+       
+        while (true) {
+            it2--;
+        
             (*it1)->Collision(*it2);
             (*it2)->Collision(*it1);
-            it2++;
+            if (it2 == last) {
+                break;
+            }
         }
-        it1++;
+        
+        
     }
 }
 

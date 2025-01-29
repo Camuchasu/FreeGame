@@ -1,5 +1,6 @@
 #include "../Base/Base.h"
-
+#include "Map.h"
+class Menyu;
 class Enemy3 : public Base {
 private:
 	enum {
@@ -8,6 +9,18 @@ private:
 		eState_Damage,
 		eState_Down,
 	};
+	enum {
+		eAnimIdleD,
+		eAnimIdleU,
+		eAnimIdleL,
+		eAnimIdleR,
+		eAnimAttackD,
+		eAnimAttackL,
+		eAnimAttackR,
+		eAnimAttackU,
+		eAnimDamage,
+		eAnimDown,	
+	};
 	int AnimNunber = 0;
 	//状態変数
 	int m_state;
@@ -15,6 +28,8 @@ private:
 	bool m_flip;
 	//体力
 	int m_hp;
+	//移動ルートデータ
+    RootData m_root_data;
 	//各状態での挙動
 	void StateIdle();
 	void StateStep();
@@ -28,12 +43,13 @@ private:
 	//ダメージ番号
 
 	int m_damage_no;
-
 public:
 	Enemy3(const CVector2D& p, bool flip);
 	void Update();
 	void Draw();
 	void Collision(Base* b);
 
+	Enemy3();
+	Menyu* m_menyu;
 };
 extern TexAnimData Enemy3_anim_data[];

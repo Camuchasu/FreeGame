@@ -42,20 +42,23 @@ private:
 	int m_attack_no;
 	//ダメージ番号
 	int m_damage_no;
-	//ヒットポイント
-	int m_hp;
+	
 	//各状態での挙動
 	void StateIdle();
 	void StateAttack01();
-	void StateAttack02();
 	void StateDamage();
 	void StateDown();
 	void StateCrouchi();
+	
 public:
+	//ヒットポイント
+	int m_hp;
+	int MAXHP;
 	Player(const CVector2D& p, bool flip);
 	void Update();
 	void Draw();
 	void Collision(Base* b);
 	Menyu* m_menyu;
+	int soubi[2];
 };
 extern TexAnimData player_anim_data[];

@@ -9,10 +9,17 @@
 #include"Game/Enemy2.h"
 #include"Game/Enemy3.h"
 #include"Game/Enemy4.h"
+#include"Game/Enemy5.h"
+#include"Game/BossEnemy.h"
 #include"Game/Item.h"
 #include"Game/UI.h"
 #include"Game/Menyu.h"
-
+#include"Game/Effect.h"
+#include"Game/GameData.h"
+#include"Game/TP.h"
+#include"Game/Slash.h"
+#include"Game/Goal.h"
+#include"Title/Title.h"
 
 //--------------------------------------------
 //グローバル変数領域
@@ -47,6 +54,7 @@ void Init(void)
 	CInput::SetButton(0, CInput::eButton3, 'C');
 	CInput::SetButton(0, CInput::eButton4, 'V');
 	CInput::SetButton(0, CInput::eButton5, VK_SPACE);
+	CInput::SetButton(0, CInput::eButton6, 'A');
 	CInput::SetButton(0, CInput::eButton10, VK_RETURN);
 	CInput::SetButton(0, CInput::eUp, VK_UP);
 	CInput::SetButton(0, CInput::eDown, VK_DOWN);
@@ -70,25 +78,40 @@ void Init(void)
 	//ゲーム起動時に一度だけ呼ばれる
 	//-----------------------------------------------------
 	ADD_RESOURCE("Player", CImage::CreateImage("Image/player2.png", player_anim_data, 16, 16));
-	ADD_RESOURCE("Enemy1", CImage::CreateImage("Image/Bat.png", Enemy1_anim_data, 150, 150));
+	ADD_RESOURCE("Enemy", CImage::CreateImage("Image/nezumi.png", Enemy_anim_data, 16, 16));
+	ADD_RESOURCE("Enemy1", CImage::CreateImage("Image/tako.png", Enemy1_anim_data, 16, 16));
 	ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/gobuta.png", Enemy2_anim_data, 150, 150));
 	ADD_RESOURCE("Enemy3", CImage::CreateImage("Image/Slime3.png", Enemy3_anim_data, 16, 16));
+	ADD_RESOURCE("Enemy4", CImage::CreateImage("Image/lex .png", Enemy4_anim_data, 16, 16));
+	ADD_RESOURCE("Enemy5", CImage::CreateImage("Image/honoo.png", Enemy5_anim_data, 16, 16));
+	ADD_RESOURCE("BossEnemy", CImage::CreateImage("Image/LastBoss.png", BossEnemy_anim_data, 16, 16));
 	ADD_RESOURCE("Map_Tip1", CImage::CreateImage("Image/gatiyuka.png"));
 	ADD_RESOURCE("Item", CImage::CreateImage("Image/a-ma-.png"));
+	ADD_RESOURCE("Item1", CImage::CreateImage("Image/kaihuku.png"));
+	ADD_RESOURCE("Item2", CImage::CreateImage("Image/yumi.png"));
+	ADD_RESOURCE("Item3", CImage::CreateImage("Image/kenn.png"));
+	ADD_RESOURCE("Bullet", CImage::CreateImage("Image/hone.png"));
 	ADD_RESOURCE("UI", CImage::CreateImage("Image/hyouzi2.png",UI_anim_data, 120, 30));
+	ADD_RESOURCE("Effect", CImage::CreateImage("Image/Slash.png", Effect_anim_data, 538, 538));
 	ADD_RESOURCE("menyu-", CImage::CreateImage("Image/menyu-.png", Menyu_anim_data, 32, 32));
-	
-	Base::Add(new UI(CVector2D(1100, 900)));
-	Base::Add(new Enemy1(CVector2D(600, 500), true));
-	Base::Add(new Enemy2(CVector2D(600, 500), true));
-	Base::Add(new Enemy3(CVector2D(600, 500), true));
-	Base::Add(new Player(CVector2D(800, 500), true));
+	ADD_RESOURCE("Itemmenyu-", CImage::CreateImage("Image/Itemmenyu-.png", Menyu_anim_data, 32, 32)); 
+	ADD_RESOURCE("HP", CImage::CreateImage("Image/gauge.png"));
+	ADD_RESOURCE("GoalTP", CImage::CreateImage("Image/GoalTP.png"));
+	ADD_RESOURCE("Goal", CImage::CreateImage("Image/Goalhaikei.png"));
+	ADD_RESOURCE("Title", CImage::CreateImage("Image/haikei.png"));
+	ADD_RESOURCE("Slash", CImage::CreateImage("Image/Slash.png", Slash_anim_data, 32, 32));
+	//ADD_RESOURCE("Title", CImage::CreateImage("Image/Title.png"));
+	//ADD_RESOURCE("Effect", CImage::CreateImage("Image/Effect.png", Effect_anim_data, 535, 535));
+	ADD_RESOURCE("Tp", CImage::CreateImage("Image/Tp.png"));
+	ADD_RESOURCE("sirusi", CImage::CreateImage("Image/sirusi.png"));
+	ADD_RESOURCE("a", CImage::CreateImage("Image/a.png"));
+	ADD_RESOURCE("sukiru", CImage::CreateImage("Image/skillbi-mu.png"));
+	ADD_RESOURCE("GameOver", CImage::CreateImage("Image/ge-muo-ba-.png"));
 	//ステージのランダム
 	srand(time(NULL));
-	//Base::Add(new Map(rand() % 5 +1));
-	Base::Add(new Map(4));
-	Base::Add(new ItemManeger());
 
+	Base::Add(new Title);
+	
 
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "../Base/Base.h"
-
+#include "Map.h"
+class Menyu;
 class Enemy1 : public Base {
 private:
 	enum {
@@ -9,12 +10,27 @@ private:
 		eState_Damage,
 		eState_Down,
 	};
+	enum {
+		eAnimIdleD,
+		eAnimIdleU,
+		eAnimIdleL,
+		eAnimIdleR,
+		eAnimAttackD,
+		eAnimAttackL,
+		eAnimAttackR,
+		eAnimAttackU,
+		eAnimDamage,
+		eAnimDown,
+	};
+	int AnimNunber = 0;
 	//状態変数
 	int m_state;
 	CImage m_img;
 	bool m_flip;
 	//体力
 	int m_hp;
+	//移動ルートデータ
+	RootData m_root_data;
 	//各状態での挙動
 	void StateIdle();
 	void StateStep();
@@ -34,6 +50,10 @@ public:
 	void Update();
 	void Draw();
 	void Collision(Base* b);
+
+	Enemy1();
+	Menyu* m_menyu;
+	
 
 };
 extern TexAnimData Enemy1_anim_data[];
